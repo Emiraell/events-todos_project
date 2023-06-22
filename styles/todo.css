@@ -64,16 +64,19 @@ button {
   color: white;
   background-color: rgb(34, 156, 34);
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
   cursor: pointer;
 }
 .remove-btn {
   background-color: rgb(241, 29, 29);
+  padding: 0px 10px;
 }
 
 .css-event::placeholder {
   padding-left: 7px;
 }
 .css-clear {
-  align-items: end;
+  background-color: rgb(175, 0, 0);
+  padding: 0px 14px;
+  /*letter-spacing: 1px;*/
 }

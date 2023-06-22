@@ -59,9 +59,18 @@ for (let i = 1; i < todoArray.length; i++){
 }
 
 function clearTodo (todoList) {
-  if (todoList !=='') { todoList = ''
-  todoArray = [{eventName: '', eventDate: '',
-  eventTime: ''}]}
-  document.querySelector('.js-render').innerHTML = todoList
   
+  if (todoList !=='') {
+  todoList = ''
+  todoArray = [{eventName: '', eventDate: '',
+  eventTime: ''}]
+}
+  document.querySelector('.js-render').innerHTML = todoList
+  let clearButton = document.querySelector('.js-clear');
+  if (clearButton.innerHTML === 'clear')
+  { clearButton.innerHTML = 'cleared' 
+  setTimeout(() => {
+    clearButton.innerHTML = 'clear'
+  }, 1000)} 
+  else { clearButton.innerHTML = 'clear'}
 }
