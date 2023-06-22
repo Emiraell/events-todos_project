@@ -1,13 +1,16 @@
-let todoEvents = [{eventName: '', eventDate: '',
+//assigning the value stored in local storage to the list
+let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', eventDate: '',
 eventTime: ''}];
 
-//displayTodoEvents();
+
+//Display the events/todos at the start of the page/app
+displayTodoEvents();
 
 function getEvents () { 
-  /*Getting the event properties out of their elements*/
 
+/*Getting the event properties out of their elements*/
 
-  // getting the event name out of it's input value//
+// getting the event name out of it's input value//
 const eventElement = document.querySelector('.js-event');
 const eventName = eventElement.value;
 
@@ -24,7 +27,6 @@ const eventTime = eventTimeElement.value;
 
 /*The property name to be pushed to in the array and the value to 
 be stored in it are of the same name, so destructuring takes place*/
-
 todoEvents.push ({eventName, eventDate, eventTime});
 /*console.log(todoEvents)*/
 
@@ -38,13 +40,11 @@ displayTodoEvents();
 
 
 /* To display each events/Todos*/
-
 function displayTodoEvents () {
   let todoList = '';
-for (let i = 1; i < todoEvents.length; i++){
+  for (let i = 1; i < todoEvents.length; i++){
   
   /*Generating a html element for each todo/event*/
-
   const eventObject = todoEvents[i];
   const eventName = eventObject.eventName;
   const eventDate = eventObject.eventDate;
@@ -52,7 +52,6 @@ for (let i = 1; i < todoEvents.length; i++){
 
   /*creating/generating an html elemnts for each 
   the events/todos*/
-
   const eventsHtml = `
   <div class="event-render">
     <div > ${i}. ${eventName}</div> 
@@ -72,10 +71,17 @@ for (let i = 1; i < todoEvents.length; i++){
   /*rendering our events/todos on the page*/
   document.querySelector('.js-render').innerHTML = todoList;
 
+  /* saving the events/todo more permanently on local storage
+  i.e on refreshing the page/re-opening the app the previous
+  todos remains intact. They can be removed either using the 
+  remove button or clear button*/
+  localStorage.setItem('events', JSON.stringify(todoEvents))
+
   return todoList;
 }
 
 function clearTodo (todoList) {
+
   /* To clear our entire todos/events from the page*/
   if (todoList !=='') {
   todoList = '';
@@ -86,13 +92,17 @@ function clearTodo (todoList) {
 
   /* Get the content of the clear button 
 and worked on it to tell user they performed an action */
-  
   let clearButton = document.querySelector('.js-clear');
   if (clearButton.innerHTML === 'clear')
   { clearButton.innerHTML = 'cleared';
+
   /*A timeout to reset the content of the reset button*/ 
   setTimeout(() => {
     clearButton.innerHTML = 'clear';
   }, 1000);} else 
   { clearButton.innerHTML = 'clear';}
+
+  /* Removing the permanetly saved value 
+  from local storage*/
+  localStorage.removeItem('events')
 }
