@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMIRAEL TODOLIST</title>
+  <link rel="stylesheet" href="styles/todo.css">
+</head>
+<body>
+  <h3>EVENTS AND TODOLIST</h3>
+  <div class="Todo-Headers">
+  
+    <h5>EVENT</h>
+    <h5>DATE</h5>
+    <h5>TIME</h5>
+  </div>
+
+  <div class="css-inputLMs js-inputJs">
+    <input type="text" class=" css-event js-event" placeholder="Enter event name" required>
+    <input type="date" class="css-date js-date" required>
+    <input type="time" class="css-time js-time" required>
+    <button class="css-btn js-btn" onclick="
+      getEvents()">
+      Add
+    </button>
+  </div>
+
+  <div class="render-body">
+     <h4>EVENTS DATABASE</h4>
+    <div class="js-render css-render"></div>
+    <button class="css-clear js-clear" onclick=" clearTodo () ">
+      clear
+    </button>
+  </div>
+  
+  <SCript src="js/todo.js"></SCript>
+</body>
+</html>
