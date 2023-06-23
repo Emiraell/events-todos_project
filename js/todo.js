@@ -3,12 +3,14 @@ let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', 
 eventTime: ''}];
 
 
-//Display the events/todos at the start of the page/app
 displayTodoEvents();
 
-function getEvents () { 
+const addButton = document.querySelector('.js-add');
+addButton.addEventListener('click', () => {
+  addEvents();
+});
 
-/*Getting the event properties out of their elements*/
+function addEvents () {
 
 // getting the event name out of it's input value//
 const eventElement = document.querySelector('.js-event');
@@ -22,33 +24,32 @@ const eventDate = eventDateElement.value;
 const eventTimeElement = document.querySelector('.js-time');
 const eventTime = eventTimeElement.value;
 
-//const displayLm = document.querySelector('.js-render')
-//displayLm.innerHTML = eventName
-
 /*The property name to be pushed to in the array and the value to 
 be stored in it are of the same name, so destructuring takes place*/
 todoEvents.push ({eventName, eventDate, eventTime});
 /*console.log(todoEvents)*/
 
-//resetting the input elements back to it default value
 eventElement.value = '';
 eventDateElement.value = '';
 eventTimeElement.value = '';
+
 displayTodoEvents();
-
 }
-
 
 /* To display each events/Todos*/
 function displayTodoEvents () {
   let todoList = '';
+
+  /*using for loop instead of for each cause looping 
+  starts from index 1*/
   for (let i = 1; i < todoEvents.length; i++){
-  
-  /*Generating a html element for each todo/event*/
   const eventObject = todoEvents[i];
-  const eventName = eventObject.eventName;
+  
+  /*const eventName = eventObject.eventName;
   const eventDate = eventObject.eventDate;
-  const eventTime = eventObject.eventTime;
+  const eventTime = eventObject.eventTime;*/
+
+  const {eventName, eventDate, eventTime} = eventObject;
 
   /*creating/generating an html elemnts for each 
   the events/todos*/
@@ -57,10 +58,7 @@ function displayTodoEvents () {
     <div > ${i} &#8226; ${eventName}</div> 
     <div> ${eventDate}</div>
     <div> ${eventTime}</div>
-    <button class ="remove-btn" 
-    onclick =
-    "todoEvents.splice(${i}, 1)
-    displayTodoEvents();">
+    <button class ="js-remove css-remove">
       Remove
     </button>
   </div>
@@ -70,15 +68,25 @@ function displayTodoEvents () {
 
   /*rendering our events/todos on the page*/
   document.querySelector('.js-render').innerHTML = todoList;
+  localStorage.setItem('events', JSON.stringify(todoEvents))
+
+
+  const removeButton = document.querySelectorAll('.js-remove');
+  removeButton.forEach((removeBtn,index) => {
+    removeBtn.addEventListener('click', () => {
+    todoEvents.splice(index, 1)
+    displayTodoEvents();
+  })
+})
 
   /* saving the events/todo more permanently on local storage
   i.e on refreshing the page/re-opening the app the previous
   todos remains intact. They can be removed either using the 
   remove button or clear button*/
-  localStorage.setItem('events', JSON.stringify(todoEvents))
 
   return todoList;
 }
+
 
 function clearTodo (todoList) {
 
