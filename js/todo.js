@@ -2,7 +2,6 @@
 let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', eventDate: '',
 eventTime: ''}];
 
-
 displayTodoEvents();
 
 const addButton = document.querySelector('.js-add');
@@ -10,6 +9,19 @@ addButton.addEventListener('click', () => {
   addEvents();
 });
 
+//add a listener to add events on pressing the enter key
+document.body.addEventListener('keydown', (event)=> {
+  if (event.key === 'Enter') {
+    addEvents();
+  }
+});
+
+//clear button listener
+document.querySelector('.js-clear').addEventListener(
+  'click', () => {
+    clearTodo();
+  }
+);
 function addEvents () {
 
 // getting the event name out of it's input value//
@@ -24,8 +36,7 @@ const eventDate = eventDateElement.value;
 const eventTimeElement = document.querySelector('.js-time');
 const eventTime = eventTimeElement.value;
 
-/*The property name to be pushed to in the array and the value to 
-be stored in it are of the same name, so destructuring takes place*/
+/*The property name is the same with variable name, so destructuring takes place*/
 todoEvents.push ({eventName, eventDate, eventTime});
 /*console.log(todoEvents)*/
 
@@ -68,8 +79,11 @@ function displayTodoEvents () {
 
   /*rendering our events/todos on the page*/
   document.querySelector('.js-render').innerHTML = todoList;
+  
+  
+  /* saving the events/todo more permanently on local storage
+  i.e arrays retain previous todos even on refreshing the page*/
   localStorage.setItem('events', JSON.stringify(todoEvents))
-
 
   const removeButton = document.querySelectorAll('.js-remove');
   removeButton.forEach((removeBtn,index) => {
@@ -78,11 +92,6 @@ function displayTodoEvents () {
     displayTodoEvents();
   })
 })
-
-  /* saving the events/todo more permanently on local storage
-  i.e on refreshing the page/re-opening the app the previous
-  todos remains intact. They can be removed either using the 
-  remove button or clear button*/
 
   return todoList;
 }
