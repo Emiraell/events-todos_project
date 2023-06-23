@@ -1,15 +1,15 @@
+/*Measurement in px*/
 body {
-  background-color: rgb(62, 7, 7);
+  background-color: #3E0707;
   font-family: arial;
-  color: rgb(233, 226, 217);
+  color: #E9E2D9;
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
 }
 h3 {
-  text-align: center;
-  background-color: rgb(19, 1, 1);
+  background-color: #130101;
   padding: 10px;
   border-radius: 5px;
   margin: 10% 10% 2% 10%;
@@ -21,7 +21,7 @@ h3 {
   white-space: nowrap;
   row-gap: 30px;
   align-items: center;
-  margin: 0px 10%;
+  margin: 0 10%;
 
 }
 h5 {
@@ -33,56 +33,52 @@ h5 {
  white-space: wrap;
 }
 .event-render {
-  border-bottom: 1px solid rgb(210, 149, 149);
+  border-bottom: 1px solid #D29595;
   text-align: left;
+  margin: 0 3%;
 }
 .Todo-Headers, .css-inputLMs {
   margin-bottom: 15px;
+}
+.Todo-Headers, .css-inputLMs, h3{
   text-align: center;
 }
 .render-body {
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.852);
+  background-color: #000001;
   padding: 5px;
   border-radius: 5px;
   margin: 10%;
 }
-/*.each-todo {
-  border-bottom: 1px solid rgb(177, 111, 111);
-  padding-bottom: 10px;
-}*/
 input{
-  height: 28px;
-  padding: 2px;
-  border-radius: 3px;
-  border: none;
-  padding-left: 8px;
+  height: 16px;
 }
-button {
-  padding: 3px;
-  height: 35px;
-  color: white;
-  background-color: rgb(34, 156, 34);
+input, button, .css-clear{
   border: none;
   border-radius: 4px;
+  padding: 2px;
+  padding: 10px 10px;
+}
+button {
+  color: white;
+  background-color: #229C22;
   cursor: pointer;
+  
 }
 .remove-btn {
-  background-color: rgb(241, 29, 29);
-  padding: 0px 10px;
+  background-color: #F11D1D;
 }
 
-.css-event::placeholder {
+.css-event::placeholder, input {
   padding-left: 7px;
 }
 .css-clear {
-  background-color: rgb(175, 0, 0);
-  padding: 0px 14px;
+  background-color: #AF0000;
   letter-spacing: 1px;
 }
 .css-author {
+  padding-right: 15%;
   display: flex;
   align-items: center;
-  justify-content: end;
-  
+  justify-content: end;  
 }
