@@ -54,7 +54,7 @@ function displayTodoEvents () {
   the events/todos*/
   const eventsHtml = `
   <div class="event-render">
-    <div > ${i}. ${eventName}</div> 
+    <div > ${i} &#8226; ${eventName}</div> 
     <div> ${eventDate}</div>
     <div> ${eventTime}</div>
     <button class ="remove-btn" 
