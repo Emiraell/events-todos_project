@@ -2,7 +2,9 @@
 let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', eventDate: '',
 eventTime: ''}];
 
-displayTodoEvents();
+//renderTodos();
+
+let renderDiv = document.getElementById('renderr-body');
 
 const addButton = document.querySelector('.js-add');
 addButton.addEventListener('click', () => {
@@ -16,44 +18,38 @@ document.body.addEventListener('keydown', (event)=> {
   }
 });
 
-//clear button listener
-document.querySelector('.js-clear').addEventListener(
-  'click', () => {
-    clearTodo();
-  }
-);
+
 function addEvents () {
 
-// getting the event name out of it's input value//
+// getting the event name datas of their input elements//
 const eventElement = document.querySelector('.js-event');
 const eventName = eventElement.value;
 
-// getting the event Date out of it's input value//
 const eventDateElement = document.querySelector('.js-date');
 const eventDate = eventDateElement.value;
 
-// getting the event Time out of it's input value//
 const eventTimeElement = document.querySelector('.js-time');
 const eventTime = eventTimeElement.value;
 
 /*The property name is the same with variable name, so destructuring takes place*/
 todoEvents.push ({eventName, eventDate, eventTime});
-/*console.log(todoEvents)*/
 
 eventElement.value = '';
 eventDateElement.value = '';
 eventTimeElement.value = '';
 
-displayTodoEvents();
+renderTodos();
 }
 
+
 /* To display each events/Todos*/
-function displayTodoEvents () {
+function renderTodos () {
+  renderDiv.hidden = false;
+  renderDiv.classList.add('render-body')
   let todoList = '';
 
-  /*using for loop instead of for each cause looping 
-  starts from index 1*/
-  for (let i = 1; i < todoEvents.length; i++){
+  /*using for loop cause looping starts from index 1*/
+  for (let i = 1; i < todoEvents.length; i++) {
   const eventObject = todoEvents[i];
   
   /*const eventName = eventObject.eventName;
@@ -62,10 +58,9 @@ function displayTodoEvents () {
 
   const {eventName, eventDate, eventTime} = eventObject;
 
-  /*creating/generating an html elemnts for each 
-  the events/todos*/
+  /*generating an html elemnts for each the events/todos*/
   const eventsHtml = `
-  <div class="event-render">
+  <div id = "js-render" class="event-render">
     <div > ${i} &#8226; ${eventName}</div> 
     <div> ${eventDate}</div>
     <div> ${eventTime}</div>
@@ -78,37 +73,49 @@ function displayTodoEvents () {
   }
 
   /*rendering our events/todos on the page*/
-  document.querySelector('.js-render').innerHTML = todoList;
   
+  renderDiv.innerHTML = `
+  <h4> EVENTS DATABASE </h4>
+  <div class = "css-render"> ${todoList} </div>
+  `
+  if (todoEvents.length > 2) {
+    renderDiv.innerHTML = `
+    <h4> EVENTS DATABASE </h4>
+    <div class = "css-render"> ${todoList} </div>
+    <button class = "css-clear js-clear" onclick = " clearTodo ()">
+     clear 
+    </button>`
+  }
+
+  //document.querySelector('.js-render').innerHTML = todoList;
   
-  /* saving the events/todo more permanently on local storage
-  i.e arrays retain previous todos even on refreshing the page*/
+  /* saving the datas more permanently to avoid loss of previouse datas*/
   localStorage.setItem('events', JSON.stringify(todoEvents))
 
   const removeButton = document.querySelectorAll('.js-remove');
   removeButton.forEach((removeBtn,index) => {
     removeBtn.addEventListener('click', () => {
-    todoEvents.splice(index, 1)
-    displayTodoEvents();
+    todoEvents.splice(index, 1);
+    
+    renderTodos();
   })
 })
 
   return todoList;
 }
 
-
-function clearTodo (todoList) {
-
   /* To clear our entire todos/events from the page*/
-  if (todoList !=='') {
+function clearTodo (todoList) {
+ 
+  if (todoList !== '') {
   todoList = '';
   todoEvents = [{eventName: '', eventDate: '',
   eventTime: ''}];
+  
 }
-  document.querySelector('.js-render').innerHTML = todoList;
+  document.getElementById('js-render').innerHTML = todoList;
+  
 
-  /* Get the content of the clear button 
-and worked on it to tell user they performed an action */
   let clearButton = document.querySelector('.js-clear');
   if (clearButton.innerHTML === 'clear')
   { clearButton.innerHTML = 'cleared';
@@ -119,7 +126,7 @@ and worked on it to tell user they performed an action */
   }, 1000);} else 
   { clearButton.innerHTML = 'clear';}
 
-  /* Removing the permanetly saved value 
-  from local storage*/
+  /* Removing the permanetly saved datas*/
   localStorage.removeItem('events')
-}
+  renderDiv.hidden = true;
+};
