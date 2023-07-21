@@ -54,7 +54,7 @@ h5 {
 input{
   height: 16px;
 }
-input, button, .css-clear{
+input, button{
   border: none;
   border-radius: 4px;
   padding: 2px;
@@ -65,6 +65,9 @@ button {
   background-color: #229C22;
   cursor: pointer;
   
+}
+.stopClearDiv button {
+
 }
 .css-remove{
   background-color: #F11D1D;

@@ -2,9 +2,15 @@
 let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', eventDate: '',
 eventTime: ''}];
 
-//renderTodos();
 
 let renderDiv = document.getElementById('renderr-body');
+
+renderTodos();
+if (todoEvents.length < 2) {
+renderDiv.hidden = true;
+}
+
+
 
 const addButton = document.querySelector('.js-add');
 addButton.addEventListener('click', () => {
@@ -38,7 +44,7 @@ eventElement.value = '';
 eventDateElement.value = '';
 eventTimeElement.value = '';
 
-renderTodos();
+renderTodos ();
 }
 
 
@@ -82,51 +88,94 @@ function renderTodos () {
     renderDiv.innerHTML = `
     <h4> EVENTS DATABASE </h4>
     <div class = "css-render"> ${todoList} </div>
+    <button class = "css-clear js-clearAll" onclick = "
+
+    todoEvents = [{eventName: '', eventDate: '', eventTime: ''}];
+    renderTodos ()
+    timeOut()
+
+">
+     clear All
+    </button>
     <button class = "css-clear js-clear" onclick = " clearTodo ()">
      clear 
     </button>`
   }
-
-  //document.querySelector('.js-render').innerHTML = todoList;
   
   /* saving the datas more permanently to avoid loss of previouse datas*/
   localStorage.setItem('events', JSON.stringify(todoEvents))
 
-  const removeButton = document.querySelectorAll('.js-remove');
+  
+  const removeButton = document.querySelectorAll('.js-remove');  
   removeButton.forEach((removeBtn,index) => {
     removeBtn.addEventListener('click', () => {
-    todoEvents.splice(index, 1);
     
+    todoEvents.splice(index, 1);
     renderTodos();
+    if (todoEvents.length < 2) {
+      timeOut ()
+    }
+    
   })
+  
 })
 
   return todoList;
 }
 
+
+
   /* To clear our entire todos/events from the page*/
-function clearTodo (todoList) {
+  let intervalId; 
+function clearTodo (todoList)  {
+  
  
-  if (todoList !== '') {
-  todoList = '';
-  todoEvents = [{eventName: '', eventDate: '',
-  eventTime: ''}];
+  if (todoEvents.length > 1 && todoList !== '') {
+    
+    
+    
+    intervalId = setInterval (() => {
+      
+      
+    todoEvents.splice(-1, 1);
+      
+      renderTodos ()
+      
+      
+      if (todoEvents.length < 2) {
+        clearInterval (intervalId);
+        
+      
+      }
+      document.querySelector('.js-clear').innerHTML = 'clearing...'
+      renderDiv.innerHTML += `
+        <button id = "stopClearing"class = "stopclearBtn"
+        onclick = " clearInterval(intervalId)
+        document.querySelector('.js-clear').innerHTML = 'clear'
+        document.getElementById('stopClearing').innerHTML = 'stopped'
+        "> stop </button>`
+        
+    }, 2000)
   
+
+  //todoList = '';
+  //todoEvents = [{eventName: '', eventDate: '',
+  //eventTime: ''}];
+  
+} else {
+  clearInterval(intervalId)
+
+} 
+
+
 }
-  document.getElementById('js-render').innerHTML = todoList;
   
-
-  let clearButton = document.querySelector('.js-clear');
-  if (clearButton.innerHTML === 'clear')
-  { clearButton.innerHTML = 'cleared';
-
-  /*A timeout to reset the content of the reset button*/ 
-  setTimeout(() => {
-    clearButton.innerHTML = 'clear';
-  }, 1000);} else 
-  { clearButton.innerHTML = 'clear';}
-
+const timeOut = () => {
+   setTimeout(() => {
+  clearInterval(intervalId)
+  renderDiv.hidden = true
+},2000)
+}
   /* Removing the permanetly saved datas*/
-  localStorage.removeItem('events')
-  renderDiv.hidden = true;
-};
+  //localStorage.removeItem('events')
+  
