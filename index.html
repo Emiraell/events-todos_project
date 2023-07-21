@@ -9,24 +9,23 @@
 <body>
   <h3>EVENTS AND TODOS</h3>
 
-  <div class="Todo-Headers">
-    <h5> EVENT </h> <h5> DATE </h5> <h5> TIME </h5>
+  <div class="todoHeaders js-headers">
+    <h5> EVENT </h5> 
+    <h5> DATE </h5> 
+    <h5> TIME </h5>
   </div>
 
-  <div class="css-inputLMs js-inputJs">
-    <input type="text" class=" css-event js-event" placeholder="Enter event name" required>
-    <input type="date" class="css-date js-date" required>
-    <input type="time" class="css-time js-time" required>
-    <button class="css-btn js-add">
+  <div class="inputDiv js-input">
+    <input type="text" class=" eventInput js-event" placeholder="Enter event name" required>
+    <input type="date" class="dateInput js-date" required>
+    <input type="time" class="timeInput js-time" required>
+    <button class="addBtn js-add">
       Add
     </button>
   </div>
 
-  <div id = "renderr-bodyy" class="renderr-bodyy">
-    <div id="renderr-body" class="renderr-body"></div>
-    <!--<h4>EVENTS DATABASE</h4>
-    <div class="js-render css-render"></div> -->
-    
+  <div id = "renderr-bodyy" class="renderDiv">
+    <div id="renderEvents" class="renderEvents"></div>
   </div>
   
   <!--

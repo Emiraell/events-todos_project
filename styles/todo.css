@@ -15,7 +15,7 @@ h3 {
   border-radius: 5px;
   margin: 10% 10% 4% 10%;
 }
-.Todo-Headers, .css-inputLMs, .event-render {
+.todoHeaders, .inputDiv, .eventRender {
   display: grid;
   grid-template-columns: 3fr 2fr 1.4fr 0.5fr;
   column-gap: 5px;
@@ -26,26 +26,26 @@ h3 {
   max-width: 600px;
 
 }
-.renderr-bodyy {
+.renderDiv {
   word-break: normal;
 }
 h5 {
   margin: 0px;
 }
-.css-render, .event-render {
+.todoRender, .eventRender {
  padding: 10px;
  max-width: 100%;
  white-space: wrap;
 }
-.event-render {
+.eventRender {
   border-bottom: 1px solid #343030;
   text-align: left;
   margin: 0 3%;
 }
-.Todo-Headers, .css-inputLMs {
+.todoHeaders, .inputDiv {
   margin-bottom: 15px;
 }
-.Todo-Headers, .css-inputLMs, h3{
+.todoHeaders, .inputDiv, h3{
   text-align: center;
 }
 .render-body {
@@ -71,7 +71,7 @@ button {
   
 }
 
-.css-remove{
+.removeBtns{
   background-color: #08083a;
 }
 .stopclearBtn, .clearAll {
@@ -81,15 +81,13 @@ button {
 .css-event::placeholder, input {
   padding-left: 7px;
 }
-.css-clear {
+.clearBtn {
   background-color: #343030;
   letter-spacing: 1px;
 }
-.css-author {
-  padding-right: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: end;  
+
+.stopclearBtn {
+  background-color: #230101;
 }
 button:hover {
   opacity: 0.8;
@@ -97,3 +95,10 @@ button:hover {
 button:active {
   opacity: 0.7;
 }
+/*.css-author {
+  padding-right: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: end;  
+}
+*/
