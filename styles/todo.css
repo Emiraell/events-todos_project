@@ -1,29 +1,33 @@
 /*Measurement in px*/
 body {
-  background-color: #3E0707;
+  background-color: #230101;
   font-family: arial;
   color: #E9E2D9;
-  width: 100%;
+  max-width: 650px;
   height: 100%;
   padding: 0;
   margin: 0;
-  
 }
+
 h3 {
   background-color:  #01010e;
   padding: 10px;
   border-radius: 5px;
-  margin: 10% 10% 2% 10%;
+  margin: 10% 10% 4% 10%;
 }
 .Todo-Headers, .css-inputLMs, .event-render {
   display: grid;
-  grid-template-columns: 3fr 2.3fr 1.7fr 1.2fr;
+  grid-template-columns: 3fr 2fr 1.4fr 0.5fr;
   column-gap: 5px;
   white-space: nowrap;
   row-gap: 30px;
   align-items: center;
   margin: 0 10%;
+  max-width: 600px;
 
+}
+.renderr-bodyy {
+  word-break: normal;
 }
 h5 {
   margin: 0px;
@@ -62,22 +66,23 @@ input, button{
 }
 button {
   color: white;
-  background-color: #229C22;
+  background-color: #047b04;
   cursor: pointer;
   
 }
-.stopClearDiv button {
 
-}
 .css-remove{
-  background-color: #F11D1D;
+  background-color: #08083a;
+}
+.stopclearBtn, .clearAll {
+  background-color: #8d0a0a;
 }
 
 .css-event::placeholder, input {
   padding-left: 7px;
 }
 .css-clear {
-  background-color: #AF0000;
+  background-color: #343030;
   letter-spacing: 1px;
 }
 .css-author {
@@ -85,4 +90,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: end;  
+}
+button:hover {
+  opacity: 0.8;
+}
+button:active {
+  opacity: 0.7;
 }
