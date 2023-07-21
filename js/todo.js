@@ -2,7 +2,7 @@
 let todoEvents = JSON.parse(localStorage.getItem('events')) || [{eventName: '', eventDate: '',
 eventTime: ''}];
 
-let renderDiv = document.getElementById('renderr-body');
+let renderDiv = document.getElementById('renderEvents');
 
 renderTodos();
 
@@ -59,13 +59,13 @@ function renderTodos () {
 
   /*generating an html elemnts for each the events/todos*/
   const eventsHtml = `
-  <div id = "js-render" class="event-render">
-    <div class = "eventNamedive"> 
+  <div id = "js-render" class="eventRender">
+    <div class = "eventNamediv"> 
       ${i}&#8226; ${eventName} 
     </div> 
     <div> ${eventDate}</div>
     <div> ${eventTime}</div>
-    <button class ="js-remove css-remove">
+    <button class ="js-remove removeBtns">
       Remove
     </button>
   </div>
@@ -77,13 +77,11 @@ function renderTodos () {
   /*rendering our events/todos on the page*/
   renderDiv.innerHTML = `
   <h4> EVENTS DATABASE </h4>
-  <div class = "css-render"> ${todoList} </div>
+  <div class = "todoRender"> ${todoList} </div>
   `
   if (todoEvents.length > 2) {
-    renderDiv.innerHTML = `
-    <h4> EVENTS DATABASE </h4>
-    <div class = "css-render"> ${todoList} </div>
-    <button class = "css-clear js-clearAll" onclick = "
+    renderDiv.innerHTML += `
+    <button class = "clearAll js-clearAll" onclick = "
       todoEvents = [
         {eventName: '', eventDate: '', eventTime: ''}
       ];
@@ -91,7 +89,7 @@ function renderTodos () {
       timeOut(); ">
       clear All
     </button>
-    <button class = "css-clear js-clear" onclick = "clearTodo ()">
+    <button class = "clearBtn js-clear" onclick = "clearTodo ()">
      clear 
     </button>
     `;
@@ -119,36 +117,43 @@ function renderTodos () {
 /* To clear our entire todos/events from the page*/
 let intervalId; 
 function clearTodo (todoList)  {
-  setTimeout (() => {
-
-  },2000)
- 
+  
   if (todoEvents.length > 1 && todoList !== '') {
+
+    document.querySelector('.js-clear').innerHTML = 'clearing';  
     intervalId = setInterval (() => {
       todoEvents.splice(-1, 1);
       renderTodos ();
       
       if (todoEvents.length < 2) {
-        clearInterval (intervalId);
+        timeOut ()
       }
 
-      document.querySelector('.js-clear').innerHTML = 'clearing';
       renderDiv.innerHTML += `
-      <button id = "stopClearing"class = "stopclearBtn" onclick = "
+      <button id = "stopClearing" class = "stopclearBtn" onclick = "
         clearInterval(intervalId);
         document.querySelector('.js-clear').innerHTML = 'clear';
         document.getElementById('stopClearing').innerHTML = 'stopped'; ">
           stop 
       </button>`;
-    }, 2000)
+    }, 800)
+   
   } else {
-      clearInterval(intervalId);
-  } 
+    clearInterval(intervalId);
+    renderTodos ();
+    document.querySelector('.js-clear').innerHTML = 'clear'
+} 
+
 }
   
 const timeOut = () => {
+  
    setTimeout(() => {
-  clearInterval(intervalId);
-  renderDiv.hidden = true;
-},2000);
+    clearInterval(intervalId);
+    renderDiv.hidden = true;
+    todoEvents = [
+      {eventName: '', eventDate: '', eventTime: ''}
+    ];
+  },1500);
+
 }
