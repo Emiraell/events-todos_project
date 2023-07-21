@@ -15,39 +15,46 @@ h3 {
   border-radius: 5px;
   margin: 10% 10% 4% 10%;
 }
+
 .todoHeaders, .inputDiv, .eventRender {
   display: grid;
-  grid-template-columns: 3fr 2fr 1.4fr 0.5fr;
+  grid-template-columns: 3fr 2fr 1.4fr 0.7fr;
   column-gap: 5px;
   white-space: nowrap;
   row-gap: 30px;
   align-items: center;
   margin: 0 10%;
-  max-width: 600px;
-
+  max-width: 630px;
 }
+
 .renderDiv {
   word-break: normal;
 }
+
 h5 {
   margin: 0px;
 }
+
 .todoRender, .eventRender {
  padding: 10px;
  max-width: 100%;
  white-space: wrap;
 }
+
 .eventRender {
   border-bottom: 1px solid #343030;
   text-align: left;
   margin: 0 3%;
 }
+
 .todoHeaders, .inputDiv {
   margin-bottom: 15px;
 }
+
 .todoHeaders, .inputDiv, h3{
   text-align: center;
 }
+
 .render-body {
   text-align: center;
   background-color: #01010e;
@@ -55,25 +62,28 @@ h5 {
   border-radius: 5px;
   margin: 10%;
 }
+
 input{
   height: 16px;
 }
+
 input, button{
   border: none;
   border-radius: 4px;
   padding: 2px;
   padding: 10px 10px;
 }
+
 button {
   color: white;
   background-color: #047b04;
   cursor: pointer;
-  
 }
 
 .removeBtns{
   background-color: #08083a;
 }
+
 .stopclearBtn, .clearAll {
   background-color: #8d0a0a;
 }
@@ -81,6 +91,7 @@ button {
 .css-event::placeholder, input {
   padding-left: 7px;
 }
+
 .clearBtn {
   background-color: #343030;
   letter-spacing: 1px;

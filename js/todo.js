@@ -119,9 +119,10 @@ let intervalId;
 function clearTodo (todoList)  {
   
   if (todoEvents.length > 1 && todoList !== '') {
-
-    document.querySelector('.js-clear').innerHTML = 'clearing';  
+    document.querySelector('.js-clear').innerHTML = 'clearing'
+    
     intervalId = setInterval (() => {
+      
       todoEvents.splice(-1, 1);
       renderTodos ();
       
@@ -130,20 +131,18 @@ function clearTodo (todoList)  {
       }
 
       renderDiv.innerHTML += `
-      <button id = "stopClearing" class = "stopclearBtn" onclick = "
-        clearInterval(intervalId);
-        document.querySelector('.js-clear').innerHTML = 'clear';
-        document.getElementById('stopClearing').innerHTML = 'stopped'; ">
-          stop 
-      </button>`;
+    <button id = "stopClearing" class = "stopclearBtn" onclick = "
+      clearInterval(intervalId);
+      document.querySelector('.js-clear').innerHTML = 'clear';
+      document.getElementById('stopClearing').innerHTML = 'stopped'; ">
+        stop 
+    </button>`;
     }, 800)
-   
   } else {
     clearInterval(intervalId);
     renderTodos ();
     document.querySelector('.js-clear').innerHTML = 'clear'
 } 
-
 }
   
 const timeOut = () => {
